@@ -5,7 +5,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { select, addToCart } from '@/redux/features/productSlice'
 import Modal from '@/app/ui/modal';
 
-
+// Definición de la interfaz del producto
 interface Product {
     id: string;
     images: string[];
@@ -15,7 +15,8 @@ interface Product {
     description:string;
     quantity: number
   }
-  
+
+  // Definición de las propiedades del componente CardProduct
   interface ProductCardProps {
     product: Product;
   }
@@ -24,12 +25,14 @@ interface Product {
     const [modalOpen, setModalOpen] = useState(false);
     const dispatch = useAppDispatch()
 
+    // Función para agregar el producto al carrito
     const addProduct = (product: object) => (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         dispatch(addToCart(product))
         setModalOpen(true)
     }
-
+    
+    // Función para manejar el cierre del modal
     const handleClose = ()=> {
         setModalOpen(!modalOpen)
       }

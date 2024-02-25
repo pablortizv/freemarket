@@ -21,8 +21,11 @@ export default function RootLayout({
     <html lang="es">
       <body className={inter.className}>
       <AppRouterCacheProvider>
+        {/* Proveedores de Redux */}
         <Providers>
+          {/* Barra de navegación */}
           <Navbar />
+           {/* Contenido de la página */}
           {children}
         </Providers>
       </AppRouterCacheProvider>

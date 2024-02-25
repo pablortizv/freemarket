@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import CardProduct from "./card";
 
+// Definición de la interfaz del producto
 interface Product {
   id: string;
   images: string[];
@@ -10,7 +11,7 @@ interface Product {
   description: string;
   quantity: number
 }
-
+// Definición de las propiedades del componente ProductList
 interface ProductListProps {
   products: Product[];
 }
@@ -20,7 +21,8 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
   const [sortType, setSortType] = useState('name');
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [sortedProducts, setSortedProducts] = useState(products);
-  
+
+   // useEffect para filtrar los productos cuando cambia el término de búsqueda o la lista de productos
   useEffect(() => {
     if (searchTerm === '') {
       setFilteredProducts(products);
@@ -29,6 +31,7 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
     }
   }, [searchTerm, products]);
 
+  // useEffect para ordenar los productos cuando cambia el tipo de ordenamiento o la lista de productos filtrados
   useEffect(() => {
     const sorted = [...filteredProducts].sort((a, b) => {
       if (sortType === 'name') {

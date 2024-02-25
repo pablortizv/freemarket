@@ -4,12 +4,13 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
 import DialogContentText from '@mui/material/DialogContentText'
-import { useState } from 'react';
 
+// Definición de la interfaz para el estado del modal
 interface Open {
     open: boolean;
     handleClose: ()=> void
   }
+  
 const Modal: React.FC<Open> = ({open, handleClose}) => {
     return (
         <Dialog onClose={handleClose} open={open}>

@@ -4,6 +4,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { addProduct } from '@/redux/features/productSlice'
 import Image from 'next/image';
 
+// Definición de la interfaz para los valores del formulario del producto
 interface ProductFormValues {
   id:string;
   name: string;
@@ -12,6 +13,8 @@ interface ProductFormValues {
   quantity: number;
   images: string[];
 }
+
+// Valores iniciales para el formulario del producto
 const initialForm = {
   id:'',
   name: '',
@@ -22,10 +25,11 @@ const initialForm = {
   images: ['', '', ''],
 }
 
-
 const ProductForm: React.FC = () => {
   const [formData, setFormData] = useState<ProductFormValues>(initialForm);
   const dispatch = useAppDispatch()
+
+  // Función para validar si las URLs de las imágenes son HTTPS y terminan en .jpeg, .jpg, .gif o .png
   const isHttpsImageUrl = (urls: string[]) => {
     var result = false
     urls.map((url: string) => {
@@ -33,6 +37,7 @@ const ProductForm: React.FC = () => {
     })
     return result
   }
+  // Función para manejar los cambios en los campos del formulario
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (e.target.name.includes("images")) {
       let id = Number(e.target.name.replace('images', ''));
@@ -51,7 +56,7 @@ const ProductForm: React.FC = () => {
     }
 
   };
-
+// Función para manejar el envío del formulario
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (isHttpsImageUrl(formData.images)) {
@@ -62,8 +67,6 @@ const ProductForm: React.FC = () => {
       alert("Url no válida")
     }
   };
-
-
 
   return (
     <div className="w-full lg:w-3/4 mx-auto flex p-10 items-center">
@@ -94,7 +97,7 @@ const ProductForm: React.FC = () => {
           width={250}
           height={250}
           className="hidden md:block pet"
-          alt="Screenshots of the dashboard project showing desktop version"
+          alt="Mascota de freemarket"
         />
       </div>
     </div>

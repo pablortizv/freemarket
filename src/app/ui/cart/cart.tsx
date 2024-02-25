@@ -4,16 +4,17 @@ import Link from "next/link"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addToCart, removeFromCart, quitFromCart } from '@/redux/features/productSlice';
 
-
 const Cart = ({ }) => {
   const [total, setTotal] = useState(0)
   const products = useAppSelector(state => state.productReducer.cart)
   const dispatch = useAppDispatch()
 
+  // useEffect para calcular el total cuando cambian los productos en el carrito
   useEffect(() => {
     fnTotal()
   }, [products])
   
+  // Función para calcular el total
   const fnTotal = () => {
     var initialValue = 0;
     products.map((product: any, index: any)=>{
@@ -21,6 +22,7 @@ const Cart = ({ }) => {
     })
     setTotal(initialValue)
   }
+
   return (
     <div className="grid max-w-8xl lg:grid-cols-12 lg:gap-12 items-start px-4 mx-auto py-6">
       <div className="lg:col-span-8">
@@ -31,7 +33,7 @@ const Cart = ({ }) => {
             Continuar comprando
           </Link>
         </div>
-
+         {/* Lista de productos en el carrito */}
         {products.map((product: any, index: any) => (
           <div className="grid gap-4" key={index}>
             <div className="flex items-start gap-4">
@@ -63,8 +65,6 @@ const Cart = ({ }) => {
             <div className="border-t" />
           </div>
         ))}
-
-
       </div>
       <div className="col-span-4 lg:p-8 sm:pt-10">
         <div className="text-2xl font-semibold">Resumen de compra</div>
@@ -93,7 +93,6 @@ const Cart = ({ }) => {
 };
 
 export default Cart;
-
 
 function ArrowLeftIcon(props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>) {
   return (

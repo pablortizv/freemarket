@@ -11,9 +11,12 @@ export default function Product() {
   const productSelected = useAppSelector(state => state.productReducer.productSelected)
   const dispatch = useAppDispatch()
 
+  // Función para manejar el cierre del modal
   const handleClose = ()=> {
     setModalOpen(!modalOpen)
   }
+
+  // Función para agregar el producto al carrito
   const addProduct = (productSelected: object) => {
     dispatch(addToCart(productSelected))
     setModalOpen(true)
@@ -42,6 +45,7 @@ export default function Product() {
           <button onClick={() => addProduct(productSelected)} className="bg-green-500 text-white px-4 py-2 rounded">Agregar al carrito</button>
         </div>
       </div>
+       {/* Modal que se muestra cuando se agrega un producto al carrito */}
       <Modal open={modalOpen} handleClose={handleClose} />
     </div>
   );
